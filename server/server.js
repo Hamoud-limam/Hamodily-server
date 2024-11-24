@@ -57,7 +57,7 @@ try{
     const hashPass = await bcrypt.hash(password,10)
 
     if(existUser){
-        return res.json({message: '5oye gayam machi 4e maho lak ',color:"red"});
+        return res.json({message: 'User already exist',color:"red"});
     }
     const register = await new user({username,email ,password:hashPass,solde});
     register.save()
