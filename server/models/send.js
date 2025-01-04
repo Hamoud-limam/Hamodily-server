@@ -1,18 +1,17 @@
-import mongoose from "mongoose"
-import moment from "moment"
+import mongoose from "mongoose";
+import { format } from "date-fns";
 
-const sendShema = new mongoose.Schema({
-    sender:String,
-    reciver:String,
-    money:Number,
-    notice:String,
+const sendSchema = new mongoose.Schema({
+    sender: String,
+    reciver: String,
+    money: Number,
+    notice: String,
     transactionTime: {
         type: String,
-        default: moment().format('YYYY-MM-DD HH:mm:ss')
-      }
-    
-})
+        default: () => format(new Date(), "yyyy-MM-dd HH:mm:ss"),
+    },
+});
 
-const send = new mongoose.model("send",sendShema)
+const Send = mongoose.model("send", sendSchema);
 
-export default send 
+export default Send;
